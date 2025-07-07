@@ -1,0 +1,10 @@
+.form-group {
+    width: 100%;
+    gap: 10px;
+}
+
+input, select{ 
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 8px;
+}
