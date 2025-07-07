@@ -41,7 +41,7 @@ export default function InscriptionHome() {
               placeholder="Nome Completo"
               type="text"
               minLength={3}
-              required />
+              />
           </div>
 
 
@@ -85,7 +85,6 @@ export default function InscriptionHome() {
             <input
             value={telefone}
               placeholder="(xx) xxxxx-xxxx"
-              required
               type="tel" />
 
           </div>
