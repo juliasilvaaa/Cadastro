@@ -1,17 +1,14 @@
 export interface IUser {
-  name: string;
+  nome: string;
   email: string;
-  data_nascimento: number;
+  data_nascimento: string;
   genero: string;
-  telefone?: number;
-  cpf: number;
-  cep?: number;
+  telefone?: string;
+  cpf: string;
+  cep?: string;
   logradouro?: string;
-  numero?: number;
+  numero?: string;
   complemento?: string;
   imagem: string;
-  termo: boolean;
-  necessidade: boolean;
 }
-
 
