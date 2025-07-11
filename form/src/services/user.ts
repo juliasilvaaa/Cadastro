@@ -7,13 +7,25 @@ import { IUser } from "@/interfaces/inscription";
 // E-mail: RegExr - moldar um tipo de entrada @, qntd de caracteres
 // Data Nascimento - Retornar a data formatada e idade minima (18)
 // Gênero - Campo Opcional - Fornecer opções pro usuario selecionar
-//
+// Imagem de Perfil (Opcional) - Imagem local
+// CPF - Validação e formatação para exibir 
+// Endereço (Opcional) - Formatação de CEP
+// Telefone (Opcional) - Formatação BR
+// Termos e condições (CheckBox) - Só há possibilidade de concluir o cadastro após aceitar os termos
+// Necessidade Especial (Opcional - CheckBox) - Opções para selecionar
+
+// -- Mensagens de Erro e Sucesso
+// - Em cada campo
+// - Erro no Cadastro e sucesso no Cadastro com modal
+
+// Depois de concluir o cadastro direcionar para o perfil do usuario com suas informações
 
 // -- Conceitos Usados
 // - Replace (Objetivo principal substituir partes de string por outras, manipualando.)
 // - New Date (Usada para criar um objeto de data e hora, sendo possível usar metódos para obter informações especificas ex:(getFullYear))
 // - Console.warn (Usada para exibir mensagens de aviso no console do navegador)
 // - localStorage (Permite armazenar dados de forma persistente)
+// - RegExr - Expressões Regulares ()
 
 // Lidando com a mudança do nome
 export function handleNomeChange(nome: string): string {
@@ -43,7 +55,13 @@ export function validarIdade(data: string, idadeMinima = 18): boolean {
   return isOldEnough;
 }
 
-// Lidando com a mudança do telefone
+// Validando E-mail
+export function validarEmail(email: string): boolean{{
+  const regex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email)
+}}
+
+// Formatando Telefone
 export function formatarTelefone(telefone: string): string {
   telefone = telefone.replace(/\D/g, "");
 

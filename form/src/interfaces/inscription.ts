@@ -10,5 +10,7 @@ export interface IUser {
   numero?: string;
   complemento?: string;
   imagem: string;
+  temNecessidadeEspecial: boolean;
+  necessidades?: string[];
+  outraDescricao?: string;
 }
-
