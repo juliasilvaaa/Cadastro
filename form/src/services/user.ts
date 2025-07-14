@@ -1,6 +1,7 @@
 // Objetivo: Criar uma página para cadastro com todas as validações
 
 import { IUser } from "@/interfaces/inscription";
+import { cp } from "fs";
 
 // -- Validações
 // Nome: Minimo caracteres
@@ -148,3 +149,40 @@ export function salvarUsuario(usuario: IUser) {
   localStorage.setItem("usuarios", JSON.stringify(listUsuarios));
   console.log("Usuario salvo com sucesso", usuario);
 }
+
+
+// Login com e-mail e cpf
+export function Login(email: string, cpf: string): IUser | null{
+  const usuariosSalvos = localStorage.getItem("usuarios");
+  const listUsuarios: IUser[] = usuariosSalvos
+  ? JSON.parse(usuariosSalvos)
+  : [];
+
+  // CPF e E-mail
+  const usuarioEncontrado = listUsuarios.find(
+    (usuario) => usuario.email === email && usuario.cpf === cpf
+  )
+
+  if(usuarioEncontrado){
+    console.log("Login bem-sucedido", usuarioEncontrado)
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado))
+    return usuarioEncontrado
+  } else{
+    console.log("E-mail ou cpf incorretos")
+    return null
+  }
+
+}
+
+// Exibir usuarios salvos
+
+// function exibirLocalStorage() {
+//   for (let i = 0; i < localStorage.length; i++) {
+//     const key = localStorage.key(i);
+//     const value = localStorage.getItem("usuarios");
+//     console.log(`Chave: ${key}, Valor: ${value}`);
+//   }
+// }
+
+// exibirLocalStorage();
+

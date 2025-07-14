@@ -5,6 +5,7 @@ import '../css/style.css'
 import { formatarCpf, formatarTelefone, handleCEPChange, handleNomeChange, salvarUsuario, validarCpf, validarEmail, validarIdade, validarTelefone } from '@/services/user';
 
 import Card from '@/components/card';
+import Link from 'next/link';
 
 export default function InscriptionHome() {
 
@@ -112,10 +113,6 @@ export default function InscriptionHome() {
       alert('Digite um cpf válido!!')
       return;
     }
-    if (!validarTelefone(telefone)) {
-      alert("Digite um telefone válido")
-      return
-    }
     if (!validarEmail(email)) {
       alert("Digite um e-mail válido")
       return
@@ -151,35 +148,46 @@ export default function InscriptionHome() {
   return (
     <div className="h-screen w-screen flex bg-white justify-center">
 
-      <div className="w-[10%] h-screen flex flex-col bg-blue-950 items-center p-2">
+      <div className="w-[10%] h-screen flex flex-col bg-blue-950 items-center p-2 gap-4">
         <img
           className="w-10 h-10"
           src="../img/logo-sbt.png" alt="Logo SBT" />
+
+        <button className='bg-blue-900 rounded-2xl w-full'>
+          <Link href="/login" className="block w-full h-full text-center text-white">
+           Login
+          </Link>
+        </button>
+
+
       </div>
 
 
-      <div className="w-[90%] bg-white text-black items-center flex flex-col overflow-y-scroll">
+      <div
+        id='container-cadastro'
+        className="w-[90%] bg-white text-black items-center flex flex-col overflow-y-scroll">
 
 
-        <div className='flex justify-center items-center w-full h-full'>
-          {/* Mensagem de alerta */}
-          {mostrarAlerta && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-              <strong className="font-bold">Atenção: </strong>
-              <span className="block sm:inline">{mensagem}</span>
-              <button
-                onClick={() => setMostrarAlerta(false)}
-                className="absolute top-1 right-3 text-red-500 text-xl font-bold"
-              >
-                &times;
-              </button>
-            </div>
-          )}
+
+        {/* Mensagem de alerta */}
+        {mostrarAlerta && (
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-green-100 border border-green-400 text-green-800 px-6 py-4 rounded shadow-lg w-[90%] max-w-md text-center">
+            <strong className="font-bold">Atenção: </strong>
+            <span className="block sm:inline">{mensagem}</span>
+            <button
+              onClick={() => setMostrarAlerta(false)}
+              className="absolute top-1 right-3 text-red-500 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+        )}
 
 
-        </div>
 
-        <form className="flex flex-col w-full items-center gap-10 py-5 max-w-[1000px] px-5 " action="">
+        <form
+          id='form-cadastro'
+          className="flex flex-col w-full items-center gap-10 py-5 max-w-[1000px] px-5 " action="">
           <h1 className='text-blue-950 text-2xl font-semibold'>Cadastro</h1>
 
           <div className='grid grid-cols-2 gap-5 w-full'>
@@ -393,7 +401,7 @@ export default function InscriptionHome() {
           <button
             onClick={cadastrar}
             className="bg-blue-950 w-[30%] h-10 rounded-md text-white cursor-pointer">
-            <a href="../components/perfil.tsx">Cadastrar</a>
+              Cadastrar
           </button>
 
 
