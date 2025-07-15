@@ -56,6 +56,7 @@ export default function LoginPage() {
                         type="text"
                         value={cpf}
                         onChange={Cpf}
+                        maxLength={14}
                         className="w-full"
                         placeholder="CPF" />
                 </div>

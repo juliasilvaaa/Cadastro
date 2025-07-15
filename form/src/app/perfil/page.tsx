@@ -4,7 +4,7 @@ import '../../css/style.css'
 import { useEffect, useState } from 'react'
 import { IUser } from '@/interfaces/inscription'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCakeCandles, faEnvelope, faIdCard, faLocationArrow, faLocationDot, faPhone, faUser, faVenusMars, faVoicemail } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faCakeCandles, faEnvelope, faIdCard, faLocationArrow, faLocationDot, faPhone, faThumbTack, faUser, faVenusMars, faVoicemail } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Perfil() {
@@ -28,17 +28,16 @@ export default function Perfil() {
                     className="flex flex-col gap-4 items-center"
                     id="containe">
 
-                    <div className="flex rounded-full h-30 w-30 bg-gray-400 justify-center items-center">
-                        <FontAwesomeIcon icon={faUser}
-                            style={{ width: '60%', height: '60%' }}
-                            className="text-white h-full" />
+                    <div className="w-32 h-32 rounded-full overflow-hidden">
+                        <img src={usuario.imagem} alt="Foto do perfil" className="w-full h-full object-cover" />
                     </div>
+
 
                     <h1>{usuario.nome}</h1>
 
                     <h1>{usuario.email}</h1>
 
-                    <h1>{usuario.telefone || "Número não informado"}</h1>
+                    <h1 className='text-center text-sm'>{usuario.telefone || "Número não informado"}</h1>
                 </div>
 
                 <button className='bg-red-600 h-10 w-full rounded-2xl cursor-pointer'>
@@ -63,7 +62,7 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faUser}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>Nome:</h1>
                                 </div>
 
@@ -79,7 +78,7 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faEnvelope}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>E-mail:</h1>
                                 </div>
                                 <h1>{usuario.email}</h1>
@@ -94,7 +93,7 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faPhone}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>Telefone:</h1>
                                 </div>
                                 {/* Usando operador caso o usuario não preencha o campo número */}
@@ -110,7 +109,7 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faCakeCandles}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800 h-full" />
                                     <h1>Data de Nascimento:</h1>
                                 </div>                                <h1>{usuario.data_nascimento}</h1>
                             </div>
@@ -121,10 +120,10 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                               <div className='flex items-center gap-2'>
+                                <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faIdCard}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>CPF:</h1>
                                 </div>
                                 <h1>{usuario.cpf}</h1>
@@ -139,7 +138,7 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faVenusMars}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>Gênero:</h1>
                                 </div>
                                 <h1>{usuario.genero}</h1>
@@ -162,10 +161,10 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                 <div className='flex items-center gap-2'>
+                                <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faLocationDot}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>CEP:</h1>
                                 </div>
                                 <h1>{usuario.cep}</h1>
@@ -178,10 +177,10 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                               <div className='flex items-center gap-2'>
+                                <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faLocationArrow}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-black h-full" />
+                                        className="text-blue-800  h-full" />
                                     <h1>Logradouro:</h1>
                                 </div>
                                 <h1>{usuario.logradouro}</h1>
@@ -194,8 +193,12 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                <h1>Número</h1>
-                                <h1>{usuario.numero}</h1>
+                                <div className='flex items-center gap-2'>
+                                    <FontAwesomeIcon icon={faThumbTack}
+                                        style={{ width: '20px', height: '20px' }}
+                                        className="text-blue-800  h-full" />
+                                    <h1>Número:</h1>
+                                </div>                                <h1>{usuario.numero}</h1>
                             </div>
 
                             <hr id='line' />
@@ -205,7 +208,12 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                <h1>Complemento</h1>
+                                <div className='flex items-center gap-2'>
+                                    <FontAwesomeIcon icon={faBuilding}
+                                        style={{ width: '20px', height: '20px' }}
+                                        className="text-blue-800 h-full" />
+                                    <h1>Complemento:</h1>
+                                </div>
                                 <h1>{usuario.complemento}</h1>
                             </div>
 
@@ -227,7 +235,14 @@ export default function Perfil() {
                             id='container-user'>
                             <div className='flex justify-between'>
                                 <h1>Descrição</h1>
-                                <h1>{usuario.necessidades || "Não descrito"}</h1>
+                                <div className='flex flex-col'>
+                                    {usuario.necessidades?.map((item, index) => (
+                                        <h1 key={item} className='w-full'>
+                                            {item}
+                                        </h1>
+                                    ))}
+                                </div>
+
                             </div>
 
                             <hr id='line' />

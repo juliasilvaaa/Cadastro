@@ -32,6 +32,7 @@ export default function InscriptionHome() {
   const [necessidadeEspecial, setNecessidadeEspecial] = useState(false)
   const [necessidadesSelecionadas, setNecessidadesSelecionadad] = useState<string[]>([])
   const [descricaoOutra, setDescricaoOutra] = useState('')
+  const [termos, setTermos] = useState('')
 
   // Mensagens de erro e sucesso
   const [mensagem, setMensagem] = useState('');
@@ -65,7 +66,6 @@ export default function InscriptionHome() {
     setIsDataValida(valido);
   }
 
-
   function Telefone(event: React.ChangeEvent<HTMLInputElement>) {
     const telefoneNew = event.target.value;
     const telefoneFormatado = formatarTelefone(telefoneNew)
@@ -95,10 +95,17 @@ export default function InscriptionHome() {
     const file = event.target.files?.[0];
 
     if (file) {
-      const urlTemporaria = URL.createObjectURL(file);
-      setImagemURL(urlTemporaria);
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64 = reader.result as string;
+        setImagemURL(base64); // Agora sim, isso será salvo corretamente
+      };
+
+      reader.readAsDataURL(file); // Isso converte a imagem para base64
     }
   }
+
 
   function cadastrar() {
     if (!nome || !email) {
@@ -146,16 +153,22 @@ export default function InscriptionHome() {
 
 
   return (
-    <div className="h-screen w-screen flex bg-white justify-center">
+    <div
+      id='container'
+      className="h-screen w-screen flex bg-white ">
 
-      <div className="w-[10%] h-screen flex flex-col bg-blue-950 items-center p-2 gap-4">
+      <div
+        id='container-logo'
+        className="w-[10%] h-screen flex flex-col bg-blue-950 items-center p-2 gap-4">
         <img
           className="w-10 h-10"
           src="../img/logo-sbt.png" alt="Logo SBT" />
 
-        <button className='bg-blue-900 rounded-2xl w-full'>
-          <Link href="/login" className="block w-full h-full text-center text-white">
-           Login
+        <button
+          id='button-login'
+          className='bg-blue-900 rounded-2xl w-full h-10 flex justify-center items-center'>
+          <Link href="/login">
+            Login
           </Link>
         </button>
 
@@ -401,7 +414,7 @@ export default function InscriptionHome() {
           <button
             onClick={cadastrar}
             className="bg-blue-950 w-[30%] h-10 rounded-md text-white cursor-pointer">
-              Cadastrar
+            Cadastrar
           </button>
 
 
