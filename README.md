@@ -13,6 +13,15 @@
   <li><code>Number</code>: Valores numéricos.</li>
   <li><code>Boolean</code>: Verdadeiro ou falso.</li>
 </ul>
+
+<h3>Tipando parâmetro de funções</h3>
+<p>É possivel tipar os parametros que vamos receber na função</p>
+```ts
+function concatenar(nome: string, idade: number) {
+    return 'Nome: ' + nome + ' idade: ' + idade;
+}
+
+
 <img width="600" height="410" alt="image" src="https://github.com/user-attachments/assets/8c37eb95-448a-4330-81c8-722dccef5e65" />
 
 
