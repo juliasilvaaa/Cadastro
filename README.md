@@ -21,7 +21,14 @@
 <p>Também é possivel tipar o retorno das funções</p>
 
 ```
-function test() {
-  console.log("notice the blank line before this function?");
+export function handleNomeChange(nome: string): string {
+  const minCaracteres = 3;
+  console.log("Nome:", nome);
+
+  if (nome.length < minCaracteres) {
+    console.warn("Poucos caracteres");
+  }
+
+  return nome;
 }
 ```
