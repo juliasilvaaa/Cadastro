@@ -19,6 +19,7 @@
 
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções</p>
+
 ```
 function test() {
   console.log("notice the blank line before this function?");
