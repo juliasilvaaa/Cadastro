@@ -38,3 +38,25 @@ export function handleNomeChange(nome: string): string {
   return nome;
 }
 ```
+<h3>Tipando Objetos | Type e Interface</h3>
+<p>Seguindo na mesma linha de raciocionio, definindo o tipo para cada atributo</p>
+
+<p>Interface</p>
+
+```ts
+export interface IUser {
+  nome: string;
+  email: string;
+  data_nascimento: string;
+}
+```
+
+<p>Type</p>
+
+```ts
+type IUser {
+  nome: string;
+  email: string;
+  data_nascimento: string;
+}
+```
