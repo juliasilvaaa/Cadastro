@@ -60,3 +60,13 @@ type IUser {
   data_nascimento: string;
 }
 ```
+
+<h2>Projeto Cadastro</h2>
+
+<p>Tela Cadastro</p>
+<img width="1681" height="788" alt="image" src="https://github.com/user-attachments/assets/d8aac36e-d53b-4d43-b50f-a0ced5f8eb3e" />
+
+<p>Tela Perfil</p>
+<img width="1892" height="796" alt="image" src="https://github.com/user-attachments/assets/e74d1d9f-e7af-49a4-a2ce-89c59f27df85" />
+<img width="1878" height="793" alt="image" src="https://github.com/user-attachments/assets/d9839ba1-0035-454e-8d43-cb10dfd1f5e4" />
+
