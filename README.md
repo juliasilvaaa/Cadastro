@@ -20,7 +20,7 @@
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções</p>
 
-```
+```ts
 export function handleNomeChange(nome: string): string {
   const minCaracteres = 3;
   console.log("Nome:", nome);
