@@ -62,4 +62,4 @@ type IUser {
 ```
 
 <h2>Projeto Cadastro</h2>
-<img width="1903" height="810" alt="image" src="https://github.com/user-attachments/assets/75c3b455-f694-4c6e-a7f7-25486020f415" />
+<img width="1894" height="899" alt="image" src="https://github.com/user-attachments/assets/c73aae5b-6ebd-4067-9a81-20846b490be3" />
