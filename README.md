@@ -62,11 +62,4 @@ type IUser {
 ```
 
 <h2>Projeto Cadastro</h2>
-
-<p>Tela Cadastro</p>
-<img width="1915" height="831" alt="image" src="https://github.com/user-attachments/assets/d54127f6-fffa-4e82-9754-7742ba1a7342" />
-
-<p>Tela Perfil</p>
-<img width="1892" height="796" alt="image" src="https://github.com/user-attachments/assets/e74d1d9f-e7af-49a4-a2ce-89c59f27df85" />
-<img width="1878" height="793" alt="image" src="https://github.com/user-attachments/assets/d9839ba1-0035-454e-8d43-cb10dfd1f5e4" />
-
+<img width="1903" height="810" alt="image" src="https://github.com/user-attachments/assets/75c3b455-f694-4c6e-a7f7-25486020f415" />
