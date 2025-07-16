@@ -19,9 +19,10 @@
 
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções</p>
-```ts
-function concatenar(nome: string, idade: number): string {
-  return 'Nome: ' + nome + ' idade: ' + idade;
-}
-
-
+```python
+def minha_funcao(parametro):
+    """
+    Esta é uma função de exemplo.
+    """
+    resultado = parametro * 2
+    return resultado
