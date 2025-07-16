@@ -15,10 +15,17 @@
 </ul>
 
 <h3>Tipando parâmetro de funções</h3>
-<p>É possivel tipar os parametros que vamos receber na função</p>
+<p>É possivel tipar os parametros que vamos receber na função: Ao passar o parâmetro, seguido de dois pontos podemos dizer o tipo dele :tipo</p>
+
+```ts
+export function Name(name: string){
+ const name: "Julia"
+ console.log(name)
+}
+```
 
 <h3>Tipando retorno de funções</h3>
-<p>Também é possivel tipar o retorno das funções</p>
+<p>Também é possivel tipar o retorno das funções: Após o fechamento do parenteses da função, dois pontos seguidos do :tipo</p>
 
 ```ts
 export function handleNomeChange(nome: string): string {
@@ -28,7 +35,6 @@ export function handleNomeChange(nome: string): string {
   if (nome.length < minCaracteres) {
     console.warn("Poucos caracteres");
   }
-
   return nome;
 }
 ```
