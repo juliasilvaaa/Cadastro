@@ -17,8 +17,12 @@
 <h3>Tipando parâmetro de funções</h3>
 <p>É possivel tipar os parametros que vamos receber na função</p>
 
-function concatenar(nome: string, idade: number) {
-    return 'Nome: ' + nome + ' idade: ' + idade;
+<h3>Tipando retorno de funções</h3>
+<p>Também é possivel tipar o retorno das funções</p>
+```md
+```ts
+function concatenar(nome: string, idade: number): string {
+  return `Nome: ${nome}, idade: ${idade}`;
 }
 
 
