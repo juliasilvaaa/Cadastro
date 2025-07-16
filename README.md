@@ -19,10 +19,8 @@
 
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções</p>
-```python
-def minha_funcao(parametro):
-    """
-    Esta é uma função de exemplo.
-    """
-    resultado = parametro * 2
-    return resultado
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
