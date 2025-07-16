@@ -35,54 +35,67 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="w-screen h-screen bg-blue-950 flex justify-center items-center">
+        <div className="w-screen h-screen flex items-center bg-white">
 
-            <div className="w-[40%] h-[80%] rounded-2xl flex flex-col items-center justify-around p-10 text-black bg-white">
-                <h1 className="text-2xl text-black">Login</h1>
+            <div className="h-[100%] bg-white w-[50%] flex justify-center items-center">
 
-                <div className='flex flex-col w-full'>
-                    <label htmlFor="">E-mail</label>
-                    <input
-                        className="w-full"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email" placeholder="example@gmail.com" />
-                </div>
+                <div className='flex flex-col w-[60%] h-[80%] justify-around'>
 
-                <div className='flex flex-col w-full'>
-                    <label htmlFor="">CPF</label>
-
-                    <input
-                        type="text"
-                        value={cpf}
-                        onChange={Cpf}
-                        maxLength={14}
-                        className="w-full"
-                        placeholder="CPF" />
-                </div>
-
-                <div className='flex flex-col  w-full items-center h-20 justify-between'>
-                    <div className='flex w-full justify-around'>
-                        <button
-                            className="bg-blue-500 w-[40%] text-white p-2 rounded"
-                            onClick={handleLogin}
-                        >
-                            Entrar
-                        </button>
-
-
-                        <button className="bg-blue-950 w-[40%] text-white p-2 rounded">
-                            <Link href="/">
-                                Cadastrar
-                            </Link>
-                        </button>
+                    <div>
+                        <h1 className='text-3xl font-semibold text-black'>Hello,</h1>
+                        <h1 className='text-3xl font-semibold text-black'>Welcome Back</h1>
                     </div>
 
-                     {erro && <p className="text-red-500 mt-2">{erro}</p>}
+                    <div className='flex flex-col gap-5 text-black'>
+
+                        <input
+                            id='input-login'
+                            className="w-full"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="email" placeholder="example@gmail.com" />
+
+                        <input
+                            id='input-login'
+                            type="text"
+                            value={cpf}
+                            onChange={Cpf}
+                            maxLength={14}
+                            className="w-full"
+                            placeholder="CPF" />
+
+                        {erro && <p className="text-red-500 mt-2">{erro}</p>}
+
+
+                    </div>
+                    <div className='flex flex-col w-full gap-2'>
+                        <button
+                            className="bg-black w-[40%] text-white p-2 rounded"
+                            onClick={handleLogin}>
+                            Login
+                        </button>
+
+                        <div className='flex items-center w-full gap-2'>
+                            <h1 className='text-black'>Don't have an account?</h1>
+                            <button className="text-black rounded font-semibold">
+                                <Link href="/">
+                                    Create Account
+                                </Link>
+                            </button>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
+
+
+
+            <div className='h-[100%] bg-black w-[50%] flex items-center justify-center rounded-l-xl'>
+                <img
+                    className="w-full h-full rounded-l-lg"
+                    src="../img/background.png" alt="3d image" />            </div>
 
         </div>
     )

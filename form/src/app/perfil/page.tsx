@@ -20,38 +20,62 @@ export default function Perfil() {
 
     if (!usuario) return <p>Carregando...</p>
     return (
-        <div className="h-screen w-screen bg-white flex">
+        <div
+            id='container-perfil'
+            className="h-screen w-screen bg-white flex">
 
-            <div className="w-[20%] bg-blue-900 h-full flex flex-col items-center justify-between p-10">
-
+            <div
+                id='container-perfil-info'
+                className="relative w-[20%] h-full bg-black p-10 overflow-hidden"
+            >
+                {/* Imagem de fundo */}
                 <div
-                    className="flex flex-col gap-4 items-center"
-                    id="containe">
+                    className="absolute inset-0 bg-cover bg-center z-0"
+                    style={{ backgroundImage: "url('../img/background.png')" }}
+                />
 
-                    <div className="w-32 h-32 rounded-full overflow-hidden">
-                        <img src={usuario.imagem} alt="Foto do perfil" className="w-full h-full object-cover" />
+                {/* Conteúdo acima da imagem */}
+                <div className="relative z-10 flex flex-col items-center justify-between h-full">
+                    <div className="flex flex-col gap-4 items-center" id="container-user-profile">
+                        <div
+                            id='image-profile'
+                            className="w-32 h-32 rounded-full overflow-hidden"
+                        >
+                            <img
+                                src={usuario.imagem}
+                                alt="Foto do perfil"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+
+                        <h1>{usuario.nome}</h1>
+                        <h1>{usuario.email}</h1>
+                        <h1 className='text-center text-sm'>
+                            {usuario.telefone || "Número não informado"}
+                        </h1>
                     </div>
 
-
-                    <h1>{usuario.nome}</h1>
-
-                    <h1>{usuario.email}</h1>
-
-                    <h1 className='text-center text-sm'>{usuario.telefone || "Número não informado"}</h1>
+                    <div className='w-full flex'>
+                        <button
+                            id='button-sair'
+                            className='bg-white w-full rounded-2xl cursor-pointer'
+                        >
+                            <Link href="/" className="text-center text-black">
+                                Sair
+                            </Link>
+                        </button>
+                    </div>
                 </div>
-
-                <button className='bg-red-600 h-10 w-full rounded-2xl cursor-pointer'>
-                    <Link href="/" className="block w-full h-full text-center leading-10 text-white">
-                        Sair
-                    </Link>
-                </button>
             </div>
 
-            <div className="w-[80%] h-full flex">
+
+            <div
+                id='container-description-info'
+                className="w-[80%] h-full flex">
 
                 <div
                     className="flex flex-col justify-start p-8 w-full text-black gap-4">
-                    <h1 className='text-2xl'>Informações Pessoais</h1>
+                    <h1 className='text-2xl font-semibold'>Informações Pessoais</h1>
 
                     <div
                         id='container-info'>
@@ -62,8 +86,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faUser}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>Nome:</h1>
+                                        className="text-black  h-full" />
+                                    <h1>Full Name</h1>
                                 </div>
 
                                 <h1>{usuario.nome}</h1>
@@ -78,8 +102,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faEnvelope}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>E-mail:</h1>
+                                        className="text-black  h-full" />
+                                    <h1>E-mail</h1>
                                 </div>
                                 <h1>{usuario.email}</h1>
                             </div>
@@ -93,8 +117,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faPhone}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>Telefone:</h1>
+                                        className="text-black   h-full" />
+                                    <h1>Telephone</h1>
                                 </div>
                                 {/* Usando operador caso o usuario não preencha o campo número */}
                                 <h1>{usuario.telefone || "Número não informado"}</h1>
@@ -109,9 +133,10 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faCakeCandles}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800 h-full" />
-                                    <h1>Data de Nascimento:</h1>
-                                </div>                                <h1>{usuario.data_nascimento}</h1>
+                                        className="text-black h-full" />
+                                    <h1>Date of Birth </h1>
+                                </div>
+                                <h1>{usuario.data_nascimento}</h1>
                             </div>
 
                             <hr id='line' />
@@ -123,8 +148,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faIdCard}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>CPF:</h1>
+                                        className="text-black h-full" />
+                                    <h1>CPF</h1>
                                 </div>
                                 <h1>{usuario.cpf}</h1>
                             </div>
@@ -138,8 +163,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faVenusMars}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>Gênero:</h1>
+                                        className="text-black  h-full" />
+                                    <h1>Gender</h1>
                                 </div>
                                 <h1>{usuario.genero}</h1>
                             </div>
@@ -150,7 +175,7 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                <h1 className='text-2xl'>Endereço</h1>
+                                <h1 className='text-2xl font-semibold'>Address</h1>
 
                             </div>
 
@@ -164,8 +189,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faLocationDot}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>CEP:</h1>
+                                        className="text-black h-full" />
+                                    <h1>Zip Code</h1>
                                 </div>
                                 <h1>{usuario.cep}</h1>
                             </div>
@@ -180,8 +205,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faLocationArrow}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>Logradouro:</h1>
+                                        className="text-black h-full" />
+                                    <h1>Public place</h1>
                                 </div>
                                 <h1>{usuario.logradouro}</h1>
                             </div>
@@ -196,8 +221,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faThumbTack}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800  h-full" />
-                                    <h1>Número:</h1>
+                                        className="text-black   h-full" />
+                                    <h1>Number</h1>
                                 </div>                                <h1>{usuario.numero}</h1>
                             </div>
 
@@ -211,8 +236,8 @@ export default function Perfil() {
                                 <div className='flex items-center gap-2'>
                                     <FontAwesomeIcon icon={faBuilding}
                                         style={{ width: '20px', height: '20px' }}
-                                        className="text-blue-800 h-full" />
-                                    <h1>Complemento:</h1>
+                                        className="text-black  h-full" />
+                                    <h1>Complement</h1>
                                 </div>
                                 <h1>{usuario.complemento}</h1>
                             </div>
@@ -224,7 +249,7 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                <h1 className='text-2xl'>Necessidades Especiais</h1>
+                                <h1 className='text-2xl font-semibold'>Special Needs</h1>
 
                             </div>
 
@@ -234,7 +259,7 @@ export default function Perfil() {
                         <div
                             id='container-user'>
                             <div className='flex justify-between'>
-                                <h1>Descrição</h1>
+                                <h1>Description</h1>
                                 <div className='flex flex-col'>
                                     {usuario.necessidades?.map((item, index) => (
                                         <h1 key={item} className='w-full'>

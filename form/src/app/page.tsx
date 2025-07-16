@@ -155,22 +155,14 @@ export default function InscriptionHome() {
   return (
     <div
       id='container'
-      className="h-screen w-screen flex bg-white ">
+      className="h-screen w-screen flex bg-white items-center ">
 
       <div
         id='container-logo'
-        className="w-[10%] h-screen flex flex-col bg-blue-950 items-center p-2 gap-4">
+        className="w-[40%] h-[100%] flex bg-white items-center gap-4 justify-between">
         <img
-          className="w-10 h-10"
-          src="../img/logo-sbt.png" alt="Logo SBT" />
-
-        <button
-          id='button-login'
-          className='bg-blue-900 rounded-2xl w-full h-10 flex justify-center items-center'>
-          <Link href="/login">
-            Login
-          </Link>
-        </button>
+          className="w-full h-full rounded-r-lg"
+          src="../img/background.png" alt="3d image" />
 
 
       </div>
@@ -178,7 +170,7 @@ export default function InscriptionHome() {
 
       <div
         id='container-cadastro'
-        className="w-[90%] bg-white text-black items-center flex flex-col overflow-y-scroll">
+        className="w-[60%] bg-white h-[100%] text-black items-center flex flex-col overflow-y-scroll scrollbar-hide">
 
 
 
@@ -200,8 +192,27 @@ export default function InscriptionHome() {
 
         <form
           id='form-cadastro'
-          className="flex flex-col w-full items-center gap-10 py-5 max-w-[1000px] px-5 " action="">
-          <h1 className='text-blue-950 text-2xl font-semibold'>Cadastro</h1>
+          className="flex flex-col w-full  gap-10 py-10 max-w-[1000px] px-[15vh] " action="">
+
+
+          <div className='flex flex-col gap-2'>
+            <h1 className='text-black text-3xl font-semibold'>Create Account</h1>
+            <div className='flex gap-2'>
+
+              <h1>Already have an account?</h1>
+              <button
+                id='button-login'
+                className='font-semibold'>
+                <Link href="/login">
+                  Log in
+                </Link>
+              </button>
+            </div>
+
+          </div>
+
+
+
 
           <div className='grid grid-cols-2 gap-5 w-full'>
 
@@ -209,12 +220,12 @@ export default function InscriptionHome() {
             {/* Nome Completo */}
             <div className="flex flex-col">
               <label htmlFor="">
-                Nome Completo: <span className='text-red-500'>*</span>
+                Full Name: <span className='text-red-500'>*</span>
               </label>
               <input
                 value={nome}
                 onChange={FullName}
-                placeholder="Nome Completo"
+                placeholder="Full name"
                 type="text"
                 minLength={3}
               />
@@ -241,7 +252,7 @@ export default function InscriptionHome() {
             {/* Data nascimento */}
             <div className="flex flex-col">
               <label className='font-medium' htmlFor="">
-                Data de Nascimento: <span className='text-red-500'>*</span>
+                Date of Birth: <span className='text-red-500'>*</span>
               </label>
               <input
                 value={data}
@@ -258,7 +269,7 @@ export default function InscriptionHome() {
             {/* Gênero */}
             <div className="flex flex-col">
               <label htmlFor="">
-                Gênero: <span className='text-red-500'>*</span>
+                Gender: <span className='text-red-500'>*</span>
               </label>
 
               <select
@@ -266,7 +277,7 @@ export default function InscriptionHome() {
                 onChange={(e) => setGenero(e.target.value)}
                 name="genero" id="">
                 {/* Valor padrão vazio */}
-                <option value="">Selecione:</option>
+                <option value="">Select</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Prefiro não dizer">Prefiro não dizer</option>
@@ -276,7 +287,7 @@ export default function InscriptionHome() {
 
             {/* Telefone */}
             <div className="flex flex-col">
-              <label htmlFor="">Telefone:</label>
+              <label htmlFor="">Telephone:</label>
               <input
                 maxLength={15}
                 value={telefone}
@@ -301,7 +312,7 @@ export default function InscriptionHome() {
                 value={cpf}
                 onChange={Cpf}
                 maxLength={14}
-                placeholder="Qual seu CPF?"
+                placeholder="What's your CPF?"
                 type="text"
                 className="border border-gray-300 rounded px-2 py-1"
               /> {!isCpfValido && (
@@ -312,32 +323,32 @@ export default function InscriptionHome() {
 
             {/* Endereço */}
             <div className="flex flex-col">
-              <label htmlFor="">Endereço:</label>
+              <label htmlFor="">Address:</label>
               <div className="grid grid-cols-2 gap-2">
 
                 <input
                   value={cep}
                   onChange={Cep}
-                  placeholder="CEP"
+                  placeholder="Zip Code"
                   maxLength={9}
                   type="text" />
 
                 <input
                   value={logradouro}
                   onChange={(e) => setLogradouro(e.target.value)}
-                  placeholder="Logradouro"
+                  placeholder="Public place"
                   type="text" />
 
                 <input
                   value={numero}
                   onChange={(e) => setNumero(e.target.value)}
-                  placeholder="Número"
+                  placeholder="Number"
                   type="text" />
 
                 <input
                   value={complemento}
                   onChange={(e) => setComplemento(e.target.value)}
-                  placeholder="Complemento"
+                  placeholder="Complement"
                   type="text" />
               </div>
 
@@ -345,7 +356,7 @@ export default function InscriptionHome() {
 
 
             <div className="flex flex-col gap-2">
-              <label className="font-medium">Selecione uma imagem:</label>
+              <label className="font-medium">Select an image:</label>
 
               {/* Label estilizada que simula o input */}
               <label
@@ -359,7 +370,7 @@ export default function InscriptionHome() {
                     className="w-full h-full object-contain"
                   />
                 ) : (
-                  <span className="text-gray-500 text-sm">Clique para selecionar</span>
+                  <span className="text-gray-500 text-sm">Click to Select</span>
                 )}
               </label>
 
@@ -381,7 +392,7 @@ export default function InscriptionHome() {
                 placeholder="Aceite"
                 type="checkbox" />
               <label className='flex gap-1'>
-                Aceite os Termos e Condições
+                Accept the Terms and Conditions
                 <span className='text-red-500'>*</span>
               </label>
 
@@ -398,8 +409,8 @@ export default function InscriptionHome() {
                   onChange={(e) => setNecessidadeEspecial(e.target.checked)} />
 
                 <label className='flex gap-1'>
+                  Do you have any special needs?
 
-                  Você possui alguma necessidade especial?
                 </label>
               </div>
 
@@ -411,10 +422,11 @@ export default function InscriptionHome() {
               )}
             </div>
           </div>
+          
           <button
             onClick={cadastrar}
-            className="bg-blue-950 w-[30%] h-10 rounded-md text-white cursor-pointer">
-            Cadastrar
+            className="bg-black w-[100%] h-10 rounded-lg text-white cursor-pointer">
+            Create Account
           </button>
 
 
