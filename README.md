@@ -26,6 +26,19 @@ export function Name(name: string){
 
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções: Após o fechamento do parenteses da função, dois pontos seguidos do :tipo</p>
+
+```ts
+export function handleNomeChange(nome: string): string {
+  const minCaracteres = 3;
+  console.log("Nome:", nome);
+
+  if (nome.length < minCaracteres) {
+    console.warn("Poucos caracteres");
+  }
+  return nome;
+}
+```
+
 <hr/>
 
 <h3>Classes</h3>
@@ -46,18 +59,6 @@ export function Name(name: string){
 </ul>
 
 
-
-```ts
-export function handleNomeChange(nome: string): string {
-  const minCaracteres = 3;
-  console.log("Nome:", nome);
-
-  if (nome.length < minCaracteres) {
-    console.warn("Poucos caracteres");
-  }
-  return nome;
-}
-```
 <h3>Tipando Objetos | Type e Interface</h3>
 <p>Seguindo na mesma linha de raciocionio, definindo o tipo para cada atributo</p>
 
