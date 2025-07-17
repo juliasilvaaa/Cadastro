@@ -58,6 +58,14 @@ export function handleNomeChange(nome: string): string {
   <li>A classe só tem uma função pura (sem this, sem propriedades).</li>
 </ul>
 
+<h3>Modificadores de Acesso</h3>
+<ul>
+  <li>Public: acessivel de qualquer lugar(padrão)</li>
+  <li>Private: acessível apenas dentro da classe</li>
+  <li>Protected: acessivel dentro da classe e de suas subclasses</li>
+  <li>Readonly: não pode ser alterado após ser definido</li>
+</ul>
+
 
 <h3>Tipando Objetos | Type e Interface</h3>
 <p>Seguindo na mesma linha de raciocionio, definindo o tipo para cada atributo</p>
