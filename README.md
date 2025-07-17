@@ -26,6 +26,26 @@ export function Name(name: string){
 
 <h3>Tipando retorno de funções</h3>
 <p>Também é possivel tipar o retorno das funções: Após o fechamento do parenteses da função, dois pontos seguidos do :tipo</p>
+<hr/>
+
+<h3>Classes</h3>
+<p>É um molde para criar OBJETOS com propriedades (variaveis) e métodos (funções). Usada para organizar o código de forma modular, reutilizar e facil de manter</p>
+
+<h3>Quando usar?</h3>
+<ul>
+  <li>Precisa representar uma entidade com dados e comportamentos Exemplo: um usuário que tem nome, email, e métodos como logar().</li>
+  <li>Vai criar vários objetos parecidos (instâncias) Ex: criar várias empresas, cada uma com nome, CNPJ, endereço…</li>
+  <li>Precisa de herança (um tipo que herda de outro) Quando você tem uma estrutura onde uma coisa é um tipo de outra.</li>
+</ul>
+
+<h3>Quando NÃO usar?</h3>
+<ul>
+  <li>O código é pequeno e simples (prefira funções).</li>
+  <li>Você não precisa guardar estado ou comportamento em objetos.</li>
+  <li>A classe só tem uma função pura (sem this, sem propriedades).</li>
+</ul>
+
+
 
 ```ts
 export function handleNomeChange(nome: string): string {
