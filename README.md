@@ -41,7 +41,7 @@ export function handleNomeChange(nome: string): string {
 
 <hr/>
 
-<h3>Classes</h3>
+<h2>Classes</h2>
 <p>É um molde para criar OBJETOS com propriedades (variaveis) e métodos (funções). Usada para organizar o código de forma modular, reutilizar e facil de manter</p>
 
 <h3>Quando usar?</h3>
