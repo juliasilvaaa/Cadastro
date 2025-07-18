@@ -75,7 +75,7 @@ export default function Perfil() {
 
                 <div
                     className="flex flex-col justify-start p-8 w-full text-black gap-4">
-                    <h1 className='text-2xl font-semibold'>Informações Pessoais</h1>
+                    <h1 className='text-2xl font-semibold'>Personal Information</h1>
 
                     <div
                         id='container-info'>
