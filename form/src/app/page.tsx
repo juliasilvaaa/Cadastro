@@ -32,7 +32,7 @@ export default function InscriptionHome() {
   const [necessidadeEspecial, setNecessidadeEspecial] = useState(false)
   const [necessidadesSelecionadas, setNecessidadesSelecionadad] = useState<string[]>([])
   const [descricaoOutra, setDescricaoOutra] = useState('')
-  const [termos, setTermos] = useState('')
+  const [termos, setTermos] = useState(false)
 
   // Mensagens de erro e sucesso
   const [mensagem, setMensagem] = useState('');
@@ -120,9 +120,11 @@ export default function InscriptionHome() {
       alert('Digite um cpf válido!!')
       return;
     }
-    if (!validarEmail(email)) {
-      alert("Digite um e-mail válido")
-      return
+   
+    if(!termos){
+      setMensagem("Você preicsa aceitar os Termos e Condições")
+      setMostrarAlerta(true)
+      return;
     }
 
     // Se der certo salva o usuario
@@ -149,6 +151,24 @@ export default function InscriptionHome() {
 
     // (opcional) esconde o sucesso depois de alguns segundos
     setTimeout(() => setMostarSucesso(false), 4000);
+
+
+    
+  // const handleCepBlur = async () => {
+  //   const cepLimpo = usuario.cep.replace(/\D/g, '');
+  //   if (cepLimpo.length !== 8) return;
+
+  //   const endereco = await buscarEnderecoPorCep(cepLimpo);
+  //   if (endereco) {
+  //     setUsuario((prev) => ({
+  //       ...prev,
+  //       logradouro: endereco.logradouro,
+  //       bairro: endereco.bairro,
+  //       cidade: endereco.localidade,
+  //       estado: endereco.uf,
+  //     }));
+  //   }
+  // };
   }
 
 
@@ -176,7 +196,7 @@ export default function InscriptionHome() {
 
         {/* Mensagem de alerta */}
         {mostrarAlerta && (
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-green-100 border border-green-400 text-green-800 px-6 py-4 rounded shadow-lg w-[90%] max-w-md text-center">
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-red-100 border border-red-400 text-red-800 px-6 py-4 rounded shadow-lg w-[90%] max-w-md text-center">
             <strong className="font-bold">Atenção: </strong>
             <span className="block sm:inline">{mensagem}</span>
             <button
@@ -389,7 +409,8 @@ export default function InscriptionHome() {
             {/* Termos e Condições*/}
             <div className="flex items-center gap-2">
               <input
-                placeholder="Aceite"
+              onChange={(e) => setTermos(e.target.checked)}
+              checked={termos}
                 type="checkbox" />
               <label className='flex gap-1'>
                 Accept the Terms and Conditions

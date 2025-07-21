@@ -93,6 +93,11 @@ select {
     #form-cadastro {
         width: 100%;
     }
+    #error-message {
+    color: red;
+    font-size: 15px;
+}
+
 }
 
 

@@ -1,7 +1,6 @@
 // Objetivo: Criar uma página para cadastro com todas as validações
 
-import { IUser } from "@/interfaces/inscription";
-import { cp } from "fs";
+import { Endereco, IUser } from "@/interfaces/inscription";
 
 // -- Validações
 // Nome: Minimo caracteres
@@ -40,7 +39,7 @@ export function handleNomeChange(nome: string): string {
   return nome;
 }
 
-// Lidando com a mudança da data de nascimento
+// Validar Idade
 export function validarIdade(data: string, idadeMinima = 18): boolean {
   const dataNascimento = new Date(data + "T00:00:00");
   const hoje = new Date();
@@ -56,11 +55,23 @@ export function validarIdade(data: string, idadeMinima = 18): boolean {
   return isOldEnough;
 }
 
+
+// Formatando a data de nascimento (00/00/0000)
+export function formatarDataNascimento(data: string): string {
+  const dataObj = new Date(data);
+  const dia = String(dataObj.getDate()).padStart(2, "0");
+  const mes = String(dataObj.getMonth() + 1).padStart(2, "0"); // Janeiro = 0
+  const ano = dataObj.getFullYear();
+
+  return `${dia}/${mes}/${ano}`;
+}
+
 // Validando E-mail
-export function validarEmail(email: string): boolean{{
+export function validarEmail(email: string): boolean {
   const regex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-  return regex.test(email)
-}}
+  return regex.test(email);
+}
+
 
 // Formatando Telefone
 export function formatarTelefone(telefone: string): string {
@@ -85,11 +96,13 @@ export function formatarTelefone(telefone: string): string {
   return telefone;
 }
 
+// Validando Telefone
 export function validarTelefone(telefone: string): boolean {
   telefone = telefone.replace(/\D/g, "");
   return telefone.length === 11;
 }
 
+// Lidando com o CEP
 export function handleCEPChange(cep: string): string {
   // Remove tudo que não for número
   cep = cep.replace(/\D/g, "");
@@ -108,31 +121,38 @@ export function handleCEPChange(cep: string): string {
   return cep;
 }
 
-// Tipa o parametro cep e ): Isso tipa o valor que a função retorna:
+// Função para formatar CPF no formato 000.000.000-00
 export function formatarCpf(cpf: string): string {
+  // Remove tudo que não for número
   cpf = cpf.replace(/\D/g, "");
 
-  // Aplicando formatação (000.000.000-00)
-  if (cpf.length > 3) {
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-  }
-  if (cpf.length > 7) {
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
-  }
-  if (cpf.length > 11) {
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1-$2");
-  }
+  // Limita o tamanho para 11 dígitos
+  cpf = cpf.slice(0, 11);
 
-  let maxcpf = 14;
-  if (cpf.length > maxcpf) {
-    console.log("Digite um cpf válido");
-  }
-  return cpf;
+  // Aplica a formatação padrão
+  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
+// Função para validar CPF com base nos dígitos verificadores
 export function validarCpf(cpf: string): boolean {
-  cpf = cpf.replace(/\D/g, "");
-  return cpf.length === 11;
+  cpf = cpf.replace(/\D/g, ""); // remove qualquer formatação
+
+  if (!/^\d{11}$/.test(cpf)) return false;
+  if (/^(\d)\1+$/.test(cpf)) return false; // rejeita CPFs com todos os dígitos iguais
+
+  const calcularDigito = (cpf: string, pesoInicial: number): number => {
+    let soma = 0;
+    for (let i = 0; i < pesoInicial - 1; i++) {
+      soma += parseInt(cpf.charAt(i)) * (pesoInicial - i);
+    }
+    const resto = (soma * 10) % 11;
+    return resto >= 10 ? 0 : resto;
+  };
+
+  const d1 = calcularDigito(cpf, 10);
+  const d2 = calcularDigito(cpf, 11);
+
+  return d1 === parseInt(cpf.charAt(9)) && d2 === parseInt(cpf.charAt(10));
 }
 
 // Criando função para salvar o usuario localmente
@@ -149,7 +169,6 @@ export function salvarUsuario(usuario: IUser) {
   localStorage.setItem("usuarios", JSON.stringify(listUsuarios));
   console.log("Usuario salvo com sucesso", usuario);
 }
-
 
 // Login com e-mail e cpf
 export function Login(email: string, cpf: string): IUser | null{
@@ -172,6 +191,24 @@ export function Login(email: string, cpf: string): IUser | null{
     return null
   }
 
+}
+
+// Buscar pelo CEP
+export async function buscarEnderecoPorCep(cep: string): Promise<Endereco | null> {
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const data = await response.json();
+
+    if (data.erro) {
+      console.warn("CEP não encontrado.");
+      return null;
+    }
+
+    return data as Endereco;
+  } catch (error) {
+    console.error("Erro ao buscar CEP:", error);
+    return null;
+  }
 }
 
 // Exibir usuarios salvos

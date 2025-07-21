@@ -34,6 +34,8 @@ export default function LoginPage() {
         setIsCpfValido(cpfValido)
     }
 
+
+
     return (
         <div className="w-screen h-screen flex items-center bg-white">
 
@@ -63,8 +65,11 @@ export default function LoginPage() {
                             maxLength={14}
                             className="w-full"
                             placeholder="CPF" />
+                        {!isCpfValido && (
+                            <span id='error-message'>Digite um cpf válido</span>
+                        )}
 
-                        {erro && <p className="text-red-500 mt-2">{erro}</p>}
+                        {erro && <p className="text-red-500 mt-2 text-lg">{erro}</p>}
 
 
                     </div>

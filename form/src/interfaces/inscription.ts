@@ -14,3 +14,11 @@ export interface IUser {
   necessidades?: string[];
   outraDescricao?: string;
 }
+
+export interface Endereco {
+  logradouro: string;
+  bairro: string;
+  localidade: string; // cidade
+  uf: string;          // estado
+  erro?: boolean;
+}

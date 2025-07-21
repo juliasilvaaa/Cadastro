@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react'
 import { IUser } from '@/interfaces/inscription'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBuilding, faCakeCandles, faEnvelope, faIdCard, faLocationArrow, faLocationDot, faPhone, faThumbTack, faUser, faVenusMars, faVoicemail } from '@fortawesome/free-solid-svg-icons'
+import { formatarDataNascimento } from '@/services/user'
 
 
 export default function Perfil() {
 
     const [usuario, setUsuario] = useState<IUser | null>(null)
+
 
     useEffect(() => {
         const usuarioLogado = localStorage.getItem("usuarioLogado")
@@ -41,11 +43,15 @@ export default function Perfil() {
                             id='image-profile'
                             className="w-32 h-32 rounded-full overflow-hidden"
                         >
+
+                            {/* O .trim() remove os espaços do início e do fim da string. */}
+                            {/* Se a imagem do usuario existir, mostrar a foto, caso não exibir uma foto padrão */}
                             <img
-                                src={usuario.imagem}
+                                src={usuario.imagem && usuario.imagem.trim() !== "" ? usuario.imagem : "/img/user.png"}
                                 alt="Foto do perfil"
                                 className="w-full h-full object-cover"
                             />
+
                         </div>
 
                         <h1>{usuario.nome}</h1>
@@ -136,7 +142,8 @@ export default function Perfil() {
                                         className="text-black h-full" />
                                     <h1>Date of Birth </h1>
                                 </div>
-                                <h1>{usuario.data_nascimento}</h1>
+                                <h1>{formatarDataNascimento(usuario.data_nascimento)}</h1>
+
                             </div>
 
                             <hr id='line' />
@@ -192,7 +199,7 @@ export default function Perfil() {
                                         className="text-black h-full" />
                                     <h1>Zip Code</h1>
                                 </div>
-                                <h1>{usuario.cep}</h1>
+                                <h1>{usuario.cep || "CEP não informado"}</h1>
                             </div>
 
                             <hr id='line' />
@@ -208,7 +215,7 @@ export default function Perfil() {
                                         className="text-black h-full" />
                                     <h1>Public place</h1>
                                 </div>
-                                <h1>{usuario.logradouro}</h1>
+                                <h1>{usuario.logradouro || "Logradouro não informado"}</h1>
                             </div>
 
                             <hr id='line' />
@@ -223,7 +230,8 @@ export default function Perfil() {
                                         style={{ width: '20px', height: '20px' }}
                                         className="text-black   h-full" />
                                     <h1>Number</h1>
-                                </div>                                <h1>{usuario.numero}</h1>
+                                </div>                               
+                                 <h1>{usuario.numero || "Número não informado"}</h1>
                             </div>
 
                             <hr id='line' />
@@ -239,7 +247,7 @@ export default function Perfil() {
                                         className="text-black  h-full" />
                                     <h1>Complement</h1>
                                 </div>
-                                <h1>{usuario.complemento}</h1>
+                                <h1>{usuario.complemento || "Não informado"}</h1>
                             </div>
 
                             <hr id='line' />
@@ -263,7 +271,7 @@ export default function Perfil() {
                                 <div className='flex flex-col'>
                                     {usuario.necessidades?.map((item, index) => (
                                         <h1 key={item} className='w-full'>
-                                            {item}
+                                            {item || "Não informado"}
                                         </h1>
                                     ))}
                                 </div>
