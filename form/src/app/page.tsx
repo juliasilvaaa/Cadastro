@@ -1,11 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link'
 import '../css/style.css'
-import { formatarCpf, formatarTelefone, handleCEPChange, handleNomeChange, salvarUsuario, validarCpf, validarEmail, validarIdade, validarTelefone } from '@/services/user';
+import { buscarEnderecoPorCep, formatarCpf, formatarTelefone, handleCEPChange, handleNomeChange, salvarUsuario, validarCpf, validarEmail, validarIdade, validarTelefone } from '@/services/user';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBuilding, faCakeCandles, faEnvelope, faIdCard, faLocationArrow, faLocationDot, faPhone, faThumbTack, faUser, faUserTie, faVenusMars, faVoicemail } from '@fortawesome/free-solid-svg-icons'
 
 import Card from '@/components/card';
-import Link from 'next/link';
+
 
 export default function InscriptionHome() {
 
@@ -29,6 +32,7 @@ export default function InscriptionHome() {
   const [isCpfValido, setIsCpfValido] = useState(true);
   const [isTelefoneValido, setIsTelefoneValido] = useState(true)
   const [emailValido, setEmailValido] = useState(true)
+  const [nomeValido, setNomeValido] = useState(true)
   const [necessidadeEspecial, setNecessidadeEspecial] = useState(false)
   const [necessidadesSelecionadas, setNecessidadesSelecionadad] = useState<string[]>([])
   const [descricaoOutra, setDescricaoOutra] = useState('')
@@ -49,7 +53,7 @@ export default function InscriptionHome() {
   function FullName(event: React.ChangeEvent<HTMLInputElement>) {
     const name = event.target.value;
     setNome(name);
-    handleNomeChange(name)
+    setNomeValido(handleNomeChange(name))
   }
 
   function handleEmail(event: React.ChangeEvent<HTMLInputElement>) {
@@ -75,11 +79,11 @@ export default function InscriptionHome() {
     setIsTelefoneValido(telefoneValido)
   }
 
-  function Cep(event: React.ChangeEvent<HTMLInputElement>) {
-    const cepNew = event.target.value;
-    const cepFormatado = handleCEPChange(cepNew);
-    setCep(cepFormatado);
-  }
+  // function Cep(event: React.ChangeEvent<HTMLInputElement>) {
+  //   const cepNew = event.target.value;
+  //   const cepFormatado = handleCEPChange(cepNew);
+  //   setCep(cepFormatado);
+  // }
 
   function Cpf(event: React.ChangeEvent<HTMLInputElement>) {
     const cpfNew = event.target.value;
@@ -107,8 +111,28 @@ export default function InscriptionHome() {
   }
 
 
+  async function Cep(event: React.ChangeEvent<HTMLInputElement>) {
+    const cepDigitado = event.target.value;
+    const cepFormatado = handleCEPChange(cepDigitado);
+    setCep(cepFormatado);
+
+    // Quando tiver 9 caracteres (CEP formatado), busca o endereço
+    if (cepFormatado.length === 9) {
+      const endereco = await buscarEnderecoPorCep(cepFormatado);
+      if (endereco) {
+        setLogradouro(endereco.logradouro || '');
+        // Se quiser mais dados:
+        // setBairro(endereco.bairro || '');
+        // setCidade(endereco.localidade || '');
+        // setEstado(endereco.uf || '');
+      }
+    }
+  }
+
+
+
   function cadastrar() {
-    if (!nome || !email) {
+    if (!nome || !email || !data || !genero || !cpf) {
       setMensagem('Preencha todos os campos obrigatórios!');
       setMostrarAlerta(true);
       return;
@@ -120,12 +144,19 @@ export default function InscriptionHome() {
       alert('Digite um cpf válido!!')
       return;
     }
-   
-    if(!termos){
+    if (!handleNomeChange(nome)) {
+      return;
+    }
+    if (!termos) {
       setMensagem("Você preicsa aceitar os Termos e Condições")
       setMostrarAlerta(true)
       return;
     }
+
+    const necessidadesTratadas = necessidadesSelecionadas.map((item) =>
+      item.toLowerCase() === "outra" ? descricaoOutra : item
+    );
+
 
     // Se der certo salva o usuario
     salvarUsuario({
@@ -141,7 +172,7 @@ export default function InscriptionHome() {
       complemento,
       temNecessidadeEspecial: necessidadeEspecial,
       imagem: imagemURL || "",
-      necessidades: necessidadeEspecial ? necessidadesSelecionadas : [],
+      necessidades: necessidadeEspecial ? necessidadesTratadas : [],
       outraDescricao: descricaoOutra,
     });
 
@@ -152,23 +183,6 @@ export default function InscriptionHome() {
     // (opcional) esconde o sucesso depois de alguns segundos
     setTimeout(() => setMostarSucesso(false), 4000);
 
-
-    
-  // const handleCepBlur = async () => {
-  //   const cepLimpo = usuario.cep.replace(/\D/g, '');
-  //   if (cepLimpo.length !== 8) return;
-
-  //   const endereco = await buscarEnderecoPorCep(cepLimpo);
-  //   if (endereco) {
-  //     setUsuario((prev) => ({
-  //       ...prev,
-  //       logradouro: endereco.logradouro,
-  //       bairro: endereco.bairro,
-  //       cidade: endereco.localidade,
-  //       estado: endereco.uf,
-  //     }));
-  //   }
-  // };
   }
 
 
@@ -216,7 +230,21 @@ export default function InscriptionHome() {
 
 
           <div className='flex flex-col gap-2'>
-            <h1 className='text-black text-3xl font-semibold'>Create Account</h1>
+
+            <div className='flex w-full justify-between'>
+
+              <h1 className='text-black text-3xl font-semibold'>Create Account</h1>
+
+              {/* Perfil Adminstrador */}
+                <Link href="/login-adm" className='bg-gray-200 h-[40px] w-[40px] flex justify-center items-center rounded-full'>
+                <FontAwesomeIcon icon={faUserTie}
+                  style={{ width: '20px', height: '20px' }}
+                  className="text-black  h-full" />
+                </Link>
+                
+      
+            </div>
+
             <div className='flex gap-2'>
 
               <h1>Already have an account?</h1>
@@ -409,8 +437,8 @@ export default function InscriptionHome() {
             {/* Termos e Condições*/}
             <div className="flex items-center gap-2">
               <input
-              onChange={(e) => setTermos(e.target.checked)}
-              checked={termos}
+                onChange={(e) => setTermos(e.target.checked)}
+                checked={termos}
                 type="checkbox" />
               <label className='flex gap-1'>
                 Accept the Terms and Conditions
@@ -443,7 +471,7 @@ export default function InscriptionHome() {
               )}
             </div>
           </div>
-          
+
           <button
             onClick={cadastrar}
             className="bg-black w-[100%] h-10 rounded-lg text-white cursor-pointer">

@@ -28,15 +28,11 @@ import { Endereco, IUser } from "@/interfaces/inscription";
 // - RegExr - Expressões Regulares ()
 
 // Lidando com a mudança do nome
-export function handleNomeChange(nome: string): string {
+export function handleNomeChange(nome: string): boolean {
   const minCaracteres = 3;
-  console.log("Nome:", nome);
 
-  if (nome.length < minCaracteres) {
-    console.warn("Poucos caracteres");
-  }
-
-  return nome;
+  const nomeValido = nome.length >= minCaracteres
+  return nomeValido;
 }
 
 // Validar Idade
