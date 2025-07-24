@@ -84,6 +84,15 @@ select {
     border: 2px solid gray;
 }
 
+td {
+  padding-left: 1rem;   /* px-4 => 16px */
+  padding-right: 1rem;
+  padding-top: 0.5rem;  /* py-2 => 8px */
+  padding-bottom: 0.5rem;
+  border: 1px solid #D1D5DB; /* border + border-gray-300 */
+}
+
+
 @media (min-width: 1900px) {
     #container-cadastro {
         display: flex;

@@ -152,18 +152,23 @@ export function validarCpf(cpf: string): boolean {
 }
 
 // Criando função para salvar o usuario localmente
+
+
 export function salvarUsuario(usuario: IUser) {
   const usuariosSalvos = localStorage.getItem("usuarios");
   const listUsuarios: IUser[] = usuariosSalvos
     ? JSON.parse(usuariosSalvos)
     : [];
 
-  // Adicionando usuario a lista
-  listUsuarios.push(usuario);
+  const novoUsuario = {
+    ...usuario,
+    id: Date.now(), // gera ID único com base no timestamp atual
+  };
 
-  // Salvar a lista atualizada
+  listUsuarios.push(novoUsuario);
+
   localStorage.setItem("usuarios", JSON.stringify(listUsuarios));
-  console.log("Usuario salvo com sucesso", usuario);
+  console.log("Usuário salvo com sucesso:", novoUsuario);
 }
 
 // Login com e-mail e cpf
@@ -209,7 +214,7 @@ export async function buscarEnderecoPorCep(cep: string): Promise<Endereco | null
 
 // Exibir usuarios salvos
 
-// function exibirLocalStorage() {
+// export function exibirLocalStorage() {
 //   for (let i = 0; i < localStorage.length; i++) {
 //     const key = localStorage.key(i);
 //     const value = localStorage.getItem("usuarios");
