@@ -4,6 +4,7 @@ import Home from "@/components/home";
 import Painel from "@/components/painel";
 import Menu from "@/components/menu";
 import Usuarios from "@/components/usuarios";
+import Configurações from "@/components/configuracoes";
 
 export default function PaginaComMenu() {
   const [secaoAtiva, setSecaoAtiva] = useState("home");
@@ -11,11 +12,13 @@ export default function PaginaComMenu() {
   const renderizarConteudo = () => {
     switch (secaoAtiva) {
       case "home":
-        return <Home />;
+        return <Home/>;
       case "painel":
-        return <Painel />;
+        return <Painel/>;
       case "usuarios":
-        return <Usuarios />
+        return <Usuarios/>
+      case "configuracoes":
+        return <Configurações/>
       default:
         return <div>Seção inválida</div>;
     }

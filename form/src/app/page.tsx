@@ -160,6 +160,7 @@ export default function InscriptionHome() {
 
     // Se der certo salva o usuario
     salvarUsuario({
+      id: Date.now(),
       nome,
       email,
       data_nascimento: data,

@@ -1,0 +1,27 @@
+.container-ajuste{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    align-items: center;
+    height: 10vh;
+    gap: 4px;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.container-ajuste:hover{
+    background-color: rgb(228, 228, 228);
+}
+.container-ajustes{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: black;
+    gap: 5vh;
+}
+
+select{
+    height: 8vh;
+    width: 30vh;
+    border: 2px solid rgb(0, 0, 0);
+}
